@@ -49,7 +49,7 @@ function App() {
               bg: "linear-gradient(90deg, rgba(0,179,179,1) 0%, #55d5c0 100%)",
               boxShadow: "0px 0px 5px 3px teal"
             }} borderRight="1px dotted teal">
-              MCU
+              Medical Check-Up
             </Tab>
             <Tab _selected={{
               bg: "linear-gradient(90deg, rgba(0,179,179,1) 0%, #55d5c0 100%)",

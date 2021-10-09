@@ -5,3 +5,7 @@
 .btn-controller:active > img {
   transform: scale(1.05);
 }
+
+html, body {
+  overflow: hidden;
+}

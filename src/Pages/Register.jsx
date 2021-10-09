@@ -18,12 +18,10 @@ import {
   Button,
   Center
 } from "@chakra-ui/react";
-
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { MyInput, PasswordInput } from '../components';
+import { MyInput, MyInputEmail, PasswordInput } from '../components';
 
 
-export default function Login() {
+export default function Register() {
   return (
     <Flex justify="center" alignItems="center" height="calc(100vh - 85px)">
       <Flex width="600px" height="calc(100vh - 150px)" direction="column" >
@@ -34,18 +32,25 @@ export default function Login() {
         <Box flex="1" width="auto" height="auto" bg="teal.700" borderRadius="10px" padding="40px"
           boxShadow="inset 0px 0px 7px 0px #000000">
 
-          <Text fontSize="3xl" align="center" mb="10">Administration Authentication</Text>
+          <Text fontSize="3xl" align="center" mb="8">Administration Registration</Text>
 
           {/* Username */}
-          <FormControl id="username" >
+          <FormControl id="email" >
+            <FormLabel>Email</FormLabel>
+            <MyInputEmail />
+          </FormControl>
+
+
+          {/* Username */}
+          <FormControl id="username" mt="5">
             <FormLabel>Username</FormLabel>
-            <MyInput/>
+            <MyInput />
           </FormControl>
 
           {/* Password */}
-          <FormControl id="password" mt="10">
+          <FormControl id="password" mt="5">
             <FormLabel>Password</FormLabel>
-            <PasswordInput/>
+            <PasswordInput />
           </FormControl>
 
           {/* Button */}
@@ -55,14 +60,7 @@ export default function Login() {
               boxShadow="0px 0px 5px 1px teal"
               _hover={{ boxShadow: "0px 0px 5px 5px teal" }}
               _active={{ bg: "teal", boxShadow: "0px 0px 5px 10px teal" }}>
-              Login
-            </Button>
-          </Center>
-
-          <Center>
-            <Button mt="2" bg="none" _hover={{ bg: "none", color: "turquoise" }} _click={{ bg: "none" }} _active={{ bg: "none" }}
-              _focus={{ bg: "none" }}>
-              Don't Have Account?
+              Register
             </Button>
           </Center>
         </Box>
@@ -70,3 +68,4 @@ export default function Login() {
     </Flex >
   )
 }
+
