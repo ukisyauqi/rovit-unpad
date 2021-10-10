@@ -18,4 +18,4 @@ npm install
 npm start
 ```
 ## Website URL:
-coming soon
+[https://naughty-hypatia-10dbc2.netlify.app/](https://naughty-hypatia-10dbc2.netlify.app/)

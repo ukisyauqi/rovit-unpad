@@ -18,6 +18,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Checkbox,
 } from "@chakra-ui/react";
 import imgBtnController from "./assets/btn.jpg";
 import imgBtnStop from "./assets/stop.png";
@@ -120,7 +121,7 @@ export const Controller = () => (
 
 export const SpeedController = () => (
   <Box mt="45px">
-    <BlackButton ml="140px" text="Remote Control"/>
+    <BlackButton ml="40px" text="Remote Control" />
     <Center>
       <Text fontSize="2xl" mt="100px" mb="20px">
         Speed Control
@@ -161,4 +162,18 @@ export const BlackButton = (props) => (
       <Text fonSize="xl">{props.text}</Text>
     </Button>
   </Box>
+);
+
+export const MyCheckbox = (props) => (
+  <>
+    <Checkbox
+      colorScheme="teal"
+      position="relative"
+      top="4px"
+      bg="teal"
+      border="1px solid teal"
+      borderRadius="4px"
+      mb="10px"
+    /><Text as="abbr" pl="10px">{props.text}</Text>
+  </>
 );

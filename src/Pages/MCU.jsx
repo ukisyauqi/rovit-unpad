@@ -11,8 +11,10 @@ import {
   Text,
   Grid,
   GridItem,
+  Image
 } from "@chakra-ui/react";
 import { BlackButton } from "../components";
+import ImgSami from "../assets/sami.png"
 
 export default function MCU() {
   return (
@@ -20,13 +22,14 @@ export default function MCU() {
       <Flex w="400px" justify="center">
         <Box>
           <Center>
-            <Box
+            <Image
               mt="40px"
               borderRadius="50%"
               w="200px"
               h="200px"
-              bg="darkgreen"
-            ></Box>
+              src={ImgSami}
+              objectFit="cover"
+            ></Image>
           </Center>
           <Box align="center" mt="20px">
             <Text fontSize="3xl" fontStyle="italic">
@@ -55,8 +58,8 @@ export default function MCU() {
       >
         <Grid
           h="100%"
-          w="100%"
-          templateColumns="370px auto 370px"
+          w="calc(100% - 32px)"
+          templateColumns="37% 26% 37%"
           rowGap="0"
           columnGap="4"
         >
@@ -68,7 +71,7 @@ export default function MCU() {
             </Flex>
           </GridItem>
 
-          <GridItem colSpan={1} >
+          <GridItem colSpan={1}>
             <Flex h="100%">
               <Box borderRadius="3px" w="5px" bg="white"></Box>
               <Box w="100%" px="15px">tengah</Box>
