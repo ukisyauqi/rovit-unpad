@@ -19,6 +19,7 @@ import {
   InputGroup,
   InputRightElement,
   Checkbox,
+  Select,
 } from "@chakra-ui/react";
 import imgBtnController from "./assets/btn.jpg";
 import imgBtnStop from "./assets/stop.png";
@@ -145,8 +146,9 @@ export const SpeedController = () => (
 );
 
 export const BlackButton = (props) => (
-  <Box ml={props.ml} mt={props.mt}>
+  <Box ml={props.ml} mt={props.mt} onClick={props.onClick}>
     <Button
+      isLoading={props.isLoading}
       size="lg"
       bg="#232325"
       _hover={{
@@ -174,6 +176,22 @@ export const MyCheckbox = (props) => (
       border="1px solid teal"
       borderRadius="4px"
       mb="10px"
-    /><Text as="abbr" pl="10px">{props.text}</Text>
+      isReadOnly
+      isChecked={props.isChecked}
+    />
+    <Text as="abbr" pl="10px">
+      {props.text}
+    </Text>
   </>
+);
+
+export const ItemDrawer = () => (
+  <Select placeholder="Select option" border="none" size="xs" transform="scale(0.9)">
+    <option style={{ color: "black" }}>Paracetamol</option>
+    <option style={{ color: "black" }}>Amoxicillin</option>
+    <option style={{ color: "black" }}>Vitamin C</option>
+    <option style={{ color: "black" }}>Makanan</option>
+    <option style={{ color: "black" }}>Minuman</option>
+    <option style={{ color: "black" }}>Aqua</option>
+  </Select>
 );

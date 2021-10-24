@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Tabs,
   TabList,
@@ -12,11 +12,15 @@ import {
   Spacer,
   Checkbox,
   Grid,
-  GridItem
+  GridItem,
+  CheckboxGroup,
+  Select,
 } from "@chakra-ui/react";
-import { BlackButton, MyCheckbox } from "../components";
+import { BlackButton, ItemDrawer, MyCheckbox } from "../components";
+import { AppContext } from "../contextProvider";
 
 export default function Administration() {
+  const { hrChecked, osChecked, btChecked, bpChecked } = useContext(AppContext);
   return (
     <Flex height="calc(100vh - 85px)">
       <Box w="44%" pt="10px">
@@ -144,25 +148,34 @@ export default function Administration() {
         <Box pt="20px" h="calc(100vh - 130px)">
           {/* Box Give Order */}
           <Box h="100%">
-            <Box bg="#323232" border="10px solid #23464C" pl="10px">
-              <Text fontSize="xl" fontWeight="bold">
+            <Box bg="#323232" border="10px solid #23464C">
+              <Text fontSize="xl" fontWeight="bold" pl="10px">
                 Medical Check-Up
               </Text>
             </Box>
 
             <Box pl="40px" pt="10px" pb="10px">
-              <MyCheckbox text="Heart Rate Checking" />
+              <MyCheckbox isChecked={hrChecked} text="Heart Rate Checking" />
               <br />
-              <MyCheckbox text="Oxygen Saturation Checking" />
+              <MyCheckbox
+                isChecked={osChecked}
+                text="Oxygen Saturation Checking"
+              />
               <br />
-              <MyCheckbox text="Body Temperatur Checking" />
+              <MyCheckbox
+                isChecked={btChecked}
+                text="Body Temperatur Checking"
+              />
               <br />
-              <MyCheckbox text="Blood Pressure Checking" />
+              <MyCheckbox
+                isChecked={bpChecked}
+                text="Blood Pressure Checking"
+              />
               <br />
             </Box>
 
-            <Box bg="#323232" border="10px solid #23464C" pl="10px">
-              <Text fontSize="xl" fontWeight="bold">
+            <Box bg="#323232" border="10px solid #23464C">
+              <Text fontSize="xl" fontWeight="bold" pl="10px">
                 Items
               </Text>
             </Box>
@@ -175,13 +188,11 @@ export default function Administration() {
               borderRadius="10px"
               pt="1px"
             >
-
-              
               <Grid
                 templateRows="repeat(3, 1fr)"
                 h="100%"
                 fontSize="sm"
-                pb="10px" 
+                pb="10px"
               >
                 {/* tabel */}
                 <GridItem rowSpan="1">
@@ -192,21 +203,16 @@ export default function Administration() {
                   </Box>
                   <Grid h="50%" templateColumns="repeat(3, 1fr)" px="10px">
                     <Box pt="2px" w="100%" borderRight="1px solid silver">
-                      <Text>asd</Text>
-                      <Text>asd</Text>
+                      <ItemDrawer />
+                      <ItemDrawer />
                     </Box>
-                    <Box
-                      pt="2px"
-                      w="100%"
-                      borderRight="1px solid silver"
-                      pl="10px"
-                    >
-                      <Text>asd</Text>
-                      <Text>asd</Text>
+                    <Box pt="2px" w="100%" borderRight="1px solid silver">
+                      <ItemDrawer />
+                      <ItemDrawer />
                     </Box>
-                    <Box pt="2px" w="100%" pl="10px">
-                      <Text>asd</Text>
-                      <Text>asd</Text>
+                    <Box pt="2px" w="100%">
+                      <ItemDrawer />
+                      <ItemDrawer />
                     </Box>
                   </Grid>
                 </GridItem>
@@ -220,21 +226,16 @@ export default function Administration() {
                   </Box>
                   <Grid h="50%" templateColumns="repeat(3, 1fr)" px="10px">
                     <Box pt="2px" w="100%" borderRight="1px solid silver">
-                      <Text>asd</Text>
-                      <Text>asd</Text>
+                      <ItemDrawer />
+                      <ItemDrawer />
                     </Box>
-                    <Box
-                      pt="2px"
-                      w="100%"
-                      borderRight="1px solid silver"
-                      pl="10px"
-                    >
-                      <Text>asd</Text>
-                      <Text>asd</Text>
+                    <Box pt="2px" w="100%" borderRight="1px solid silver">
+                      <ItemDrawer />
+                      <ItemDrawer />
                     </Box>
-                    <Box pt="2px" w="100%" pl="10px">
-                      <Text>asd</Text>
-                      <Text>asd</Text>
+                    <Box pt="2px" w="100%">
+                      <ItemDrawer />
+                      <ItemDrawer />
                     </Box>
                   </Grid>
                 </GridItem>
@@ -248,21 +249,16 @@ export default function Administration() {
                   </Box>
                   <Grid h="50%" templateColumns="repeat(3, 1fr)" px="10px">
                     <Box pt="2px" w="100%" borderRight="1px solid silver">
-                      <Text>Paracetamol</Text>
-                      <Text>Amoxicilin</Text>
+                      <ItemDrawer />
+                      <ItemDrawer />
                     </Box>
-                    <Box
-                      pt="2px"
-                      w="100%"
-                      borderRight="1px solid silver"
-                      pl="10px"
-                    >
-                      <Text>Medicine</Text>
-                      <Text>Medicine</Text>
+                    <Box pt="2px" w="100%" borderRight="1px solid silver">
+                      <ItemDrawer />
+                      <ItemDrawer />
                     </Box>
-                    <Box pt="2px" w="100%" pl="10px">
-                      <Text>Patient A</Text>
-                      <Text>Patient B</Text>
+                    <Box pt="2px" w="100%">
+                      <ItemDrawer />
+                      <ItemDrawer />
                     </Box>
                   </Grid>
                 </GridItem>
