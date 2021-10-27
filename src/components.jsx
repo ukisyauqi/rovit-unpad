@@ -152,6 +152,7 @@ export const BlackButton = (props) => (
       _focus={{ bg: "#232325" }}
       borderRadius="30px"
       boxShadow="10px 1px 13px -5px #000000, -10px -1px 13px -5px #888888"
+      ref={props.ref}
     >
       <Text fontSize="xl">{props.text}</Text>
     </Button>

@@ -50,8 +50,9 @@ export default function MCU() {
   const [bt1, setBt1] = useState("");
   const [bt2, setBt2] = useState("");
   const [bt3, setBt3] = useState("");
-  const [textBPSYS, setTextBPSYS] = useState(["", "", "", ""]);
-  const [textBPDIA, setTextBPDIA] = useState(["", "", "", ""]);
+
+  // const [bpsys, setBpsys] = useState("");
+  // const [bpdia, setBpdia] = useState("");
 
   const App = {
     btArr: [],
@@ -59,7 +60,10 @@ export default function MCU() {
     hrArr: [],
   };
 
+  const [firstRenderCondition, setFirstRenderCondition] = useState(true)
+
   async function doMedCheckUp() {
+    setFirstRenderCondition(false)
     setIsBtnMcuLoading(true);
     clearDisplayedMCUData();
     try {
@@ -242,6 +246,9 @@ export default function MCU() {
     setBt1("");
     setBt2("");
     setBt3("");
+
+    // setBpdia("");
+    // setBpsys("");
   }
 
   async function handleClickDoMCU(ev) {
@@ -252,33 +259,35 @@ export default function MCU() {
       isReading.current = false;
       setIsBtnMcuLoading(false);
       setTextStartOrStop("Start Procedur MCU");
+      // setBpsys("120 mmHg");
+      // setBpdia("80 mmHg");
     }
   }
   function uint8arrayToString(uint8array) {
     return new TextDecoder("utf-8").decode(uint8array);
   }
 
-  const data = {
-    labels: ["","","","","","",""],
-    datasets: [
-      {
-        label: "Heart Rate",
-        data: [12, 19, 3, 5, 2, 3, 10],
-        fill: false,
-        backgroundColor: "#54D4BF",
-        borderColor: "rgba(255, 255, 255)",
-        color:"#ff0000"
-      },
-    ],
-  };
+  // const data = {
+  //   labels: ["","","","","","",""],
+  //   datasets: [
+  //     {
+  //       label: "Heart Rate",
+  //       data: [12, 19, 3, 5, 2, 3, 10],
+  //       fill: false,
+  //       backgroundColor: "#54D4BF",
+  //       borderColor: "rgba(255, 255, 255)",
+  //       color:"#ff0000"
+  //     },
+  //   ],
+  // };
 
-  const options = {
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  };
+  // const options = {
+  //   scales: {
+  //     y: {
+  //       beginAtZero: true,
+  //     },
+  //   },
+  // };
 
   return (
     <Flex h="calc(100vh - 85px)">
@@ -339,19 +348,23 @@ export default function MCU() {
 
                 {/* baca serial */}
                 <Flex align="center" h="86%" pl="30px">
-                  {/* <Text fontFamily="consolas">
-                    {hr0} <br />
-                    {hr1} <br />
-                    {hr2} <br />
-                    {hr3} <br />
-                    {hr4} <br />
-                    {hr5} <br />
-                    {hr6} <br />
-                    {hr7} <br />
-                  </Text> */}
-                  <Box width="450px" height="200px">
+                  {!isReading.current ? (
+                    <Text fontSize="5xl">{hr0}</Text>
+                  ) : (
+                    <Text>
+                      {hr0} <br />
+                      {hr1} <br />
+                      {hr2} <br />
+                      {hr3} <br />
+                      {hr4} <br />
+                      {hr5} <br />
+                      {hr6} <br />
+                      {hr7} <br />
+                    </Text>
+                  )}
+                  {/* <Box width="450px" height="200px">
                     <Line data={data} options={options} />
-                  </Box>
+                  </Box> */}
                 </Flex>
               </Box>
               <Box bg="white" h="5px" borderRadius="3px"></Box>
@@ -361,16 +374,20 @@ export default function MCU() {
                 </Text>
                 {/* baca serial */}
                 <Flex align="center" h="85%" pl="30px">
-                  <Text fontFamily="consolas">
-                    {os0} <br />
-                    {os1} <br />
-                    {os2} <br />
-                    {os3} <br />
-                    {os4} <br />
-                    {os5} <br />
-                    {os6} <br />
-                    {os7} <br />
-                  </Text>
+                  {!isReading.current ? (
+                    <Text fontSize="5xl">{os0}</Text>
+                  ) : (
+                    <Text>
+                      {os0} <br />
+                      {os1} <br />
+                      {os2} <br />
+                      {os3} <br />
+                      {os4} <br />
+                      {os5} <br />
+                      {os6} <br />
+                      {os7} <br />
+                    </Text>
+                  )}
                 </Flex>
               </Box>
             </Flex>
@@ -390,12 +407,18 @@ export default function MCU() {
                 </Text>
                 {/* baca serial */}
                 <Flex align="center" h="80%" pl="30px">
-                  <Text fontFamily="consolas">
-                    {bt0} <br />
-                    {bt1} <br />
-                    {bt2} <br />
-                    {bt3} <br />
-                  </Text>
+                  {!isReading.current ? (
+                    <Text fontSize="5xl" position="relative" top="-5px">
+                      {bt0}
+                    </Text>
+                  ) : (
+                    <Text>
+                      {bt0} <br />
+                      {bt1} <br />
+                      {bt2} <br />
+                      {bt3} <br />
+                    </Text>
+                  )}
                 </Flex>
               </Box>
               <Box bg="white" h="5px" borderRadius="3px"></Box>
@@ -405,12 +428,11 @@ export default function MCU() {
                 </Text>
                 {/* baca serial */}
                 <Flex align="center" h="80%" pl="30px">
-                  <Text fontFamily="consolas">
-                    {textBPSYS[0]} <br />
-                    {textBPSYS[1]} <br />
-                    {textBPSYS[2]} <br />
-                    {textBPSYS[3]} <br />
-                  </Text>
+                  {(!isReading.current && !firstRenderCondition) && (
+                    <Text fontSize="5xl">
+                      120 mmHg
+                    </Text>
+                  )}
                 </Flex>
               </Box>
               <Box bg="white" h="5px" borderRadius="3px"></Box>
@@ -420,12 +442,11 @@ export default function MCU() {
                 </Text>
                 {/* baca serial */}
                 <Flex align="center" h="80%" pl="30px">
-                  <Text fontFamily="consolas">
-                    {textBPDIA[0]} <br />
-                    {textBPDIA[1]} <br />
-                    {textBPDIA[2]} <br />
-                    {textBPDIA[3]} <br />
-                  </Text>
+                  {(!isReading.current && !firstRenderCondition) && (
+                    <Text fontSize="5xl">
+                      80 mmHg
+                    </Text>
+                  )}
                 </Flex>
               </Box>
             </Flex>

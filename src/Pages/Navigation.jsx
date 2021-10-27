@@ -44,7 +44,7 @@ export default function Navigation() {
           </Flex>
         </Box>
         <Flex height="200px" align="center" pl="20px">
-          <BlackButton text="Cancle Automation"/>
+          <BlackButton text="Cancel Automation"/>
         </Flex>
 
       </Box>
