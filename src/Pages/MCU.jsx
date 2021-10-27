@@ -17,6 +17,7 @@ import {
 import { BlackButton } from "../components";
 import ImgSami from "../assets/sami.png";
 import { AppContext } from "../contextProvider";
+import { Line } from "react-chartjs-2";
 
 export default function MCU() {
   const { setHrChecked, setOsChecked, setBtChecked, setBpChecked } =
@@ -177,12 +178,11 @@ export default function MCU() {
         duration: 3000,
       });
       calculateMCUData();
-      
-      setHrChecked(true)
-      setOsChecked(true)
-      setBtChecked(true)
-      setBpChecked(false)
 
+      setHrChecked(true);
+      setOsChecked(true);
+      setBtChecked(true);
+      setBpChecked(false);
 
       App.reader.releaseLock();
       await App.port.close();
@@ -258,6 +258,28 @@ export default function MCU() {
     return new TextDecoder("utf-8").decode(uint8array);
   }
 
+  const data = {
+    labels: ["","","","","","",""],
+    datasets: [
+      {
+        label: "Heart Rate",
+        data: [12, 19, 3, 5, 2, 3, 10],
+        fill: false,
+        backgroundColor: "#54D4BF",
+        borderColor: "rgba(255, 255, 255)",
+        color:"#ff0000"
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
   return (
     <Flex h="calc(100vh - 85px)">
       <Flex w="400px" justify="center">
@@ -317,7 +339,7 @@ export default function MCU() {
 
                 {/* baca serial */}
                 <Flex align="center" h="86%" pl="30px">
-                  <Text fontFamily="consolas">
+                  {/* <Text fontFamily="consolas">
                     {hr0} <br />
                     {hr1} <br />
                     {hr2} <br />
@@ -326,7 +348,10 @@ export default function MCU() {
                     {hr5} <br />
                     {hr6} <br />
                     {hr7} <br />
-                  </Text>
+                  </Text> */}
+                  <Box width="450px" height="200px">
+                    <Line data={data} options={options} />
+                  </Box>
                 </Flex>
               </Box>
               <Box bg="white" h="5px" borderRadius="3px"></Box>

@@ -25,7 +25,7 @@ import imgBtnController from "./assets/btn.jpg";
 import imgBtnStop from "./assets/stop.png";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-export const MyInput = () => (
+export const MyInput = (props) => (
   <Input
     type="text"
     focusBorderColor="white"
@@ -33,23 +33,13 @@ export const MyInput = () => (
     color="black"
     _focus={{ bg: "white" }}
     style={{ border: "none", boxShadow: "inset 0px 0px 7px -2px #000000" }}
-    placeholder="Enter username"
+    placeholder="Enter Email"
+    onChange={props.onChange}
+    value={props.value}
   />
 );
 
-export const MyInputEmail = () => (
-  <Input
-    type="email"
-    focusBorderColor="white"
-    bg="#E0E0E0"
-    color="black"
-    _focus={{ bg: "white" }}
-    style={{ border: "none", boxShadow: "inset 0px 0px 7px -2px #000000" }}
-    placeholder="Enter email"
-  />
-);
-
-export const PasswordInput = () => {
+export const PasswordInput = (props) => {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
 
@@ -63,6 +53,8 @@ export const PasswordInput = () => {
         style={{ border: "none", boxShadow: "inset 0px 0px 7px -2px #000000" }}
         placeholder="Enter password"
         _focus={{ bg: "white" }}
+        onChange={props.onChange}
+        value={props.value}
       />
       <InputRightElement>
         <Box onClick={handleClick}>
@@ -161,7 +153,7 @@ export const BlackButton = (props) => (
       borderRadius="30px"
       boxShadow="10px 1px 13px -5px #000000, -10px -1px 13px -5px #888888"
     >
-      <Text fonSize="xl">{props.text}</Text>
+      <Text fontSize="xl">{props.text}</Text>
     </Button>
   </Box>
 );
@@ -186,7 +178,12 @@ export const MyCheckbox = (props) => (
 );
 
 export const ItemDrawer = () => (
-  <Select placeholder="Select option" border="none" size="xs" transform="scale(0.9)">
+  <Select
+    placeholder="Select option"
+    border="none"
+    size="xs"
+    transform="scale(0.9)"
+  >
     <option style={{ color: "black" }}>Paracetamol</option>
     <option style={{ color: "black" }}>Amoxicillin</option>
     <option style={{ color: "black" }}>Vitamin C</option>

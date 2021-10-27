@@ -15,9 +15,12 @@ import {
   GridItem,
   CheckboxGroup,
   Select,
+  Img,
+  Center,
 } from "@chakra-ui/react";
 import { BlackButton, ItemDrawer, MyCheckbox } from "../components";
 import { AppContext } from "../contextProvider";
+import gambarMap from "../assets/map.png";
 
 export default function Administration() {
   const { hrChecked, osChecked, btChecked, bpChecked } = useContext(AppContext);
@@ -38,7 +41,9 @@ export default function Administration() {
         </Box>
 
         <Box pt="20px" pr="20px" h="calc(100vh - 132px)">
-          <Box bg="gray" h="100%"></Box>
+          <Center>
+            <Img src={gambarMap} h="540px"></Img>
+          </Center>
         </Box>
       </Box>
 
